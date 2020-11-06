@@ -107,3 +107,7 @@ The repository is structured as follows
 
 The programs `local.py`, `global.py`, `wan.py` and `client.py`
 can be used to start the local, global, wan controller and the client
+
+## About this project
+This project is based on [P4-IPsec](https://github.com/uni-tue-kn/p4-ipsec) and [P4-MACsec](https://github.com/uni-tue-kn/p4-macsec).  
+We thank [Arwed Mett](https://github.com/Pfeifenjoy) for his help.
