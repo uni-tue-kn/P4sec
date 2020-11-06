@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "nothing.proto";
+
+package p4sec;
+
+service General {
+	rpc check_connection(nothing) returns (nothing);
+}

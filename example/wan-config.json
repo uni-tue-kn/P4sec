@@ -1,0 +1,20 @@
+{
+	"name": "wan1",
+	"history_file": "~/.p4sec-wan-history",
+	"private": {
+		"address": "unix:/tmp/p4sec-wan",
+		"credentials": {
+			"ca-file": "build/certificates/ca.crt",
+			"cert-file": "build/certificates/localhost.crt",
+			"key-file": "build/certificates/localhost.key"
+		}
+	},
+	"public": {
+		"address": "unix:/tmp/p4sec",
+		"credentials": {
+			"ca-file": "build/certificates/ca.crt",
+			"cert-file": "build/certificates/localhost.crt",
+			"key-file": "build/certificates/localhost.key"
+		}
+	}
+}

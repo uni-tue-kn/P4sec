@@ -1,0 +1,1 @@
+from local_lib.exception.registration import RegistrationException

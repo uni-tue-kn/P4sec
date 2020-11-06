@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "topology.proto";
+import "nothing.proto";
+
+package p4sec;
+
+message subnets {
+	string          controller_id = 1;
+	repeated string subnets       = 2;
+}
+
+message subnet {
+	string controller_id = 1;
+	string subnet        = 2;
+}
+
+service GlobalRouting {
+	rpc add_subnet(subnet) returns (nothing);
+	rpc remove_subnet(subnet) returns (nothing);
+}
+
+message forward_rule {
+	string src = 1;
+	string dst = 2;
+	string dst_mac = 3;
+	uint32 port = 4;
+	string subnet = 5;
+}
+
+service LocalRouting {
+	rpc new_forward_rule(forward_rule) returns (nothing);
+	rpc remove_forward_rule(forward_rule) returns (nothing);
+}
+
+service WanRouting {
+	rpc add_subnet(subnet) returns (nothing);
+	rpc remove_subnet(subnet) returns (nothing);
+}

@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "nothing.proto";
+import "topology.proto";
+
+package p4sec.macsec;
+
+message address {
+	string mac  = 1;
+	uint32 port = 2;
+}
+
+message channel {
+	bytes   key    = 1;
+	address target = 2;
+}
+
+message rule {
+	channel       validate          = 1;
+	channel       protect           = 2;
+	uint32        soft_packet_limit = 3;
+	uint32        hard_packet_limit = 4;
+	uint64        soft_time_limit   = 5;
+	uint64        hard_time_limit   = 6;
+	topology.edge edge              = 7;
+	bool          has_edge          = 8;
+	address       peer              = 9;
+	bool          has_peer          = 10;
+}
+
+message bddp_key {
+	bytes value = 1;
+}
+
+service Macsec {
+	rpc add(rule) returns (nothing);
+	rpc remove(address) returns (nothing);
+	rpc renew(rule) returns (nothing);
+
+	rpc send_bddp_packet(bddp_key) returns (nothing);
+}
+
+service GlobalMacsec {
+	rpc notify_soft_packet_limit(topology.edge) returns (nothing);
+	rpc notify_soft_time_limit(topology.edge) returns (nothing);
+
+	rpc request_rule(topology.edge) returns (rule);
+	rpc remove_rule(topology.edge) returns (nothing);
+	rpc renew_rule(topology.edge) returns (rule);
+
+	rpc send_bddp_packet(bddp_key) returns (nothing);
+}

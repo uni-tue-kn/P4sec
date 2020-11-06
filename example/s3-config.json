@@ -1,0 +1,42 @@
+{
+	"name": "s3",
+	"ip": "3.3.3.3",
+	"mac": "00:00:00:FF:03:03",
+	"gateway": "10.0.3.254",
+	"concentrator": false,
+	"address": "unix:/tmp/p4sec-s3",
+	"credentials": {
+		"ca-file": "build/certificates/ca.crt",
+		"cert-file": "build/certificates/localhost.crt",
+		"key-file": "build/certificates/localhost.key"
+	},
+	"global": {
+		"address": "unix:/tmp/p4sec-g1",
+		"credentials": {
+			"ca-file": "build/certificates/ca.crt",
+			"cert-file": "build/certificates/localhost.crt",
+			"key-file": "build/certificates/localhost.key"
+		}
+	},
+	"switch": {
+		"device_id": 2,
+		"address": "localhost:50053",
+		"num_ports": 15,
+		"notification_socket": "ipc:///tmp/bmv2-2-notifications.ipc"
+	},
+	"extern_ports": [ ],
+	"hosts": [
+		{
+			"address": "10.0.3.3",
+			"mac": "00:00:00:00:03:03",
+			"port": 1
+		}
+	],
+	"subnets": [ "10.0.3.0/24" ],
+	"port-authorization": {
+		"type": "radius",
+		"ip": "127.0.0.1",
+		"port": 1812,
+		"secret": "testing123"
+	}
+}

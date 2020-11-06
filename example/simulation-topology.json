@@ -1,0 +1,61 @@
+{
+	"log_level": "INFO",
+	"p4": {
+		"config": "build/p4c/basic.json",
+		"modules": [
+			"build/externs/libp4ipsec.so",
+			"build/externs/libp4macsec.so"
+		]
+	},
+	"hosts": [
+		{
+			"name": "h1",
+			"mac": "00:00:00:00:01:01",
+			"ip": "10.0.1.1"
+		},
+		{
+			"name": "h2",
+			"mac": "00:00:00:00:02:02",
+			"ip": "10.0.2.2"
+		},
+		{
+			"name": "h3",
+			"mac": "00:00:00:00:03:03",
+			"ip": "10.0.3.3"
+		},
+		{
+			"name": "g1",
+			"mac": "00:00:00:00:01:02",
+			"ip": "10.0.1.2"
+		}
+	],
+	"switches": [
+		{
+			"id": 0,
+			"name": "s1",
+			"grpc": 50051,
+			"thrift": 9007,
+			"gateway": "10.0.1.254"
+		},
+		{
+			"id": 1,
+			"name": "s2",
+			"grpc": 50052,
+			"thrift": 9008,
+			"gateway": "10.0.2.254"
+		},
+		{
+			"id": 2,
+			"name": "s3",
+			"grpc": 50053,
+			"thrift": 9009,
+			"gateway": "10.0.3.254"
+		}
+	],
+	"links": [
+		["s1", "s2"], ["s1", "s3"],
+		["h1", "s1"], ["h2", "s2"], ["h3", "s3"],
+
+		["g1", "s1" ]
+	]
+}

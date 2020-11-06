@@ -1,0 +1,22 @@
+{
+	"name": "client-1",
+	"wan": {
+		"name": "wan-controller",
+		"address": "unix:/tmp/p4sec",
+		"credentials": {
+			"ca-file": "build/certificates/ca.crt",
+			"cert-file": "build/certificates/localhost.crt",
+			"key-file": "build/certificates/localhost.key"
+		}
+	},
+	"global": {
+		"address": "unix:/tmp/p4sec-g2",
+		"credentials": {
+			"ca-file": "build/certificates/ca.crt",
+			"cert-file": "build/certificates/localhost.crt",
+			"key-file": "build/certificates/localhost.key"
+		}
+	},
+	"wpa_config": "example/wpa_supplicant_h1.conf",
+	"extern": true
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "nothing.proto";
+
+package p4sec.topology;
+
+message edge {
+	string controller1  = 1;
+	uint32 port1        = 2;
+	string controller2  = 3;
+	uint32 port2        = 4;
+	string type         = 5;
+	uint32 last_updated = 6;
+}
+
+service LLDP {
+	rpc add_edge(edge) returns (nothing);
+	rpc remove_edge(edge) returns (nothing);
+}

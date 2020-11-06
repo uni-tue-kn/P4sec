@@ -1,0 +1,52 @@
+{
+	"name": "s2",
+	"ip": "2.2.2.2",
+	"mac": "00:00:00:FF:02:02",
+	"gateway": "10.0.2.254",
+	"concentrator": true,
+	"address": "unix:/tmp/p4sec-s2",
+	"credentials": {
+		"ca-file": "build/certificates/ca.crt",
+		"cert-file": "build/certificates/localhost.crt",
+		"key-file": "build/certificates/localhost.key"
+	},
+	"global": {
+		"address": "unix:/tmp/p4sec-g2",
+		"credentials": {
+			"ca-file": "build/certificates/ca.crt",
+			"cert-file": "build/certificates/localhost.crt",
+			"key-file": "build/certificates/localhost.key"
+		}
+	},
+	"switch": {
+		"device_id": 1,
+		"address": "localhost:50052",
+		"num_ports": 15,
+		"notification_socket": "ipc:///tmp/bmv2-1-notifications.ipc"
+	},
+	"extern_ports": [ 2, 3 ],
+	"hosts": [
+		{
+			"address": "10.0.2.2",
+			"mac": "00:00:00:00:02:02",
+			"port": 1
+		},
+		{
+			"address": "1.1.1.1",
+			"mac": "00:00:00:FF:01:01",
+			"port": 3
+		},
+		{
+			"address": "10.0.2.5",
+			"mac": "00:00:00:00:02:05",
+			"port": 2
+		}
+	],
+	"subnets": [ "10.0.2.0/24" ],
+	"port-authorization": {
+		"type": "radius",
+		"ip": "127.0.0.1",
+		"port": 1812,
+		"secret": "testing123"
+	}
+}

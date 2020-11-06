@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "text.proto";
+
+package p4sec;
+
+service Command {
+	rpc run_command(text) returns (text);
+}

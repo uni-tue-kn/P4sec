@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+import "nothing.proto";
+
+package p4sec.ipsec;
+
+/**
+* An endpoint for ipsec. E.g. a gateway or client.
+*/
+message endpoint {
+	bytes           address = 1;
+	string          network_id = 2;
+	bool            is_client = 3;
+	repeated string subnets = 4;
+};
+
+
+/**
+* A cryptographic algorithm with key.
+*/
+message crypto {
+	string algorithm = 1;
+	bytes  key       = 2;
+}
+
+/**
+* connection between two entities.
+*/
+message connection {
+	bytes    spi = 1;
+	crypto   encryption = 4;
+	crypto   authentication = 5;
+}
+
+/**
+* A tunnel describes the connection between the client and the switch.
+*/
+message tunnel {
+	string     id = 1;
+
+	endpoint endpoint1 = 2;
+	endpoint endpoint2 = 3;
+
+	connection connection_1_to_2 = 4;
+	connection connection_2_to_1 = 5;
+
+	uint64 soft_time_limit = 6;
+	uint64 hard_time_limit = 7;
+	uint32 soft_packet_limit = 8;
+	uint32 hard_packet_limit = 9;
+}
+
+message tunnel_description {
+	uint64   lifetime = 1;
+	endpoint source = 2;
+	string   target = 3;
+}
+
+service Ipsec {
+	rpc new(ipsec.tunnel) returns (nothing);
+	rpc renew(ipsec.tunnel) returns (nothing);
+	rpc remove(ipsec.tunnel) returns (nothing);
+	rpc notify_soft_packet_limit(tunnel) returns (nothing);
+	rpc notify_hard_packet_limit(tunnel) returns (nothing);
+}
+
+service AsyncIpsec {
+	rpc request_tunnel(tunnel_description) returns (ipsec.tunnel);
+	rpc refresh_tunnel(tunnel) returns (ipsec.tunnel);
+	rpc remove_tunnel(tunnel) returns (nothing);
+}
+
+service Network {
+	rpc add_endpoint(endpoint) returns (nothing);
+	rpc remove_endpoint(endpoint) returns (nothing);
+}
+
+message address {
+	string value = 1;
+}
+
+service Concentrator {
+	rpc set_ip(address) returns (nothing);
+}

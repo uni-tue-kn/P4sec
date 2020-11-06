@@ -1,0 +1,22 @@
+{
+	"name": "g1",
+	"address": "unix:/tmp/p4sec-g1",
+	"public": {
+		"address": "10.0.1.4:5000"
+	},
+	"site-address": "1.1.1.1",
+	"wan": {
+		"name": "wan",
+		"address": "unix:/tmp/p4sec-wan",
+		"credentials": {
+			"ca-file": "build/certificates/ca.crt",
+			"cert-file": "build/certificates/localhost.crt",
+			"key-file": "build/certificates/localhost.key"
+		}
+	},
+	"credentials": {
+		"ca-file": "build/certificates/ca.crt",
+		"cert-file": "build/certificates/localhost.crt",
+		"key-file": "build/certificates/localhost.key"
+	}
+}

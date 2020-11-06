@@ -1,0 +1,4 @@
+- https://www.cs.upc.edu/lclsi/Manuales/wireless/files/wpa_supplicant.conf
+- https://wiki.freeradius.org/guide/Getting%20Started#initial-tests
+- https://github.com/secdev/scapy/blob/master/scapy/layers/eap.py
+- https://github.com/secdev/scapy/blob/master/scapy/layers/radius.py
